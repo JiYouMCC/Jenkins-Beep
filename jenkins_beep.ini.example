@@ -1,0 +1,16 @@
+[jenkins]
+root_url    = https://your-jenkins-server/
+username    = your-username
+token       = your-api-token
+
+; Optional: customise the voice announcements. Use {job} for the job name.
+running_msg = Build {job} has started!
+waiting_msg = Still waiting for {job} to finish.
+success_msg = Build {job} succeeded! Go check it out!
+failure_msg = Build {job} failed! Go fix it now!
+
+; Optional: TTS voice (partial name match, case-insensitive).
+; Windows Chinese example : voice = huihui
+; macOS   Chinese example : voice = ting-ting
+; Leave blank to use the system default voice.
+; voice =
