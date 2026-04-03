@@ -175,6 +175,8 @@ class MonitorWorker(QThread):
                         elapsed_s = int(time.time() * 1000 - info.get("timestamp", 0)) // 1000
                         elapsed   = _fmt_duration(elapsed_s) if elapsed_s > 0 else "?"
                         self._log(f"   ⏳ Build #{watched_number} still running ({elapsed} elapsed)...")
+                        if tick_counter % ticks_per_reminder == 0 and self.waiting_enabled:
+                            beep_waiting(self.job_name, self.waiting_msg)
                     else:
                         self._finish(info)
                         return

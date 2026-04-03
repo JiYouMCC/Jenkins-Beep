@@ -233,6 +233,8 @@ def _monitor_job(job_url, job_name, auth, interval, build_number,
                     elapsed_s = int(time.time() * 1000 - info.get("timestamp", 0)) // 1000
                     elapsed   = _fmt_duration(elapsed_s) if elapsed_s > 0 else "?"
                     print(f"{prefix}   ⏳ Build #{watched_number} still running ({elapsed} elapsed)...")
+                    if tick_counter % ticks_per_reminder == 0 and waiting_enabled:
+                        beep_waiting(job_name, waiting_template)
                 else:
                     _report_and_beep(info, job_name, success_template, fail_template)
                     return
